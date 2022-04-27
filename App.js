@@ -1,20 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Geolocation from "react-native-geolocation-service";
+import PubNubReact from "pubnub-react";
+import Login from './Login';
+import Welcome from './screens/Welcome';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{flex:1}}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='Login' component={Login}/>
+          <Stack.Screen name='Welcome' component={Welcome}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    <StatusBar style='auto'/> 
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
